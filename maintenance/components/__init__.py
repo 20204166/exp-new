@@ -1,0 +1,96 @@
+"""Scanner and cluster primitives used by the Expra Connect host adapter."""
+
+from .catalog import ResourceFeature, ResourceFeatureCatalog
+from .cluster_roles import (
+    CapabilityGrant,
+    ClusterRole,
+    CoordinatorEpoch,
+    CoordinatorLease,
+    FencingError,
+    PromotionDecision,
+    RoleAssignment,
+    RoleAuthorizationError,
+    RoleChange,
+    RoleState,
+    rejoin_as_worker,
+)
+from .cluster_storage import (
+    CoordinatorTimeline,
+    ResourceSnapshot,
+    SnapshotBatch,
+    StandbyBuffer,
+    StorageStatus,
+)
+from .downloads import DownloadScanner, DownloadsPathResolver, HashFingerprint
+from .gpu import GPU_INFORMATION_UNAVAILABLE, GpuDetector, gpu_unavailable_message
+from .process_safety import (
+    PROTECTED_PROCESS_NAMES,
+    ProcessSafetyPolicy,
+    normalize_username,
+    protected_process_pids,
+    usernames_match,
+)
+from .scan_support import (
+    DOWNLOADS_SCAN_CANCELLED,
+    ProgressCallback,
+    ProgressTask,
+    ScanCancelled,
+    check_cancelled,
+    require_psutil,
+    windows_windll,
+)
+from .temperature import (
+    TemperatureEvent,
+    TemperaturePolicy,
+    TemperatureSample,
+    TemperatureScan,
+    TemperatureSeriesSnapshot,
+    TemperatureState,
+    TemperatureTelemetry,
+)
+
+__all__ = [
+    "DOWNLOADS_SCAN_CANCELLED",
+    "GPU_INFORMATION_UNAVAILABLE",
+    "PROTECTED_PROCESS_NAMES",
+    "CapabilityGrant",
+    "ClusterRole",
+    "CoordinatorEpoch",
+    "CoordinatorLease",
+    "CoordinatorTimeline",
+    "DownloadScanner",
+    "DownloadsPathResolver",
+    "FencingError",
+    "GpuDetector",
+    "HashFingerprint",
+    "ProcessSafetyPolicy",
+    "ProgressCallback",
+    "ProgressTask",
+    "PromotionDecision",
+    "ResourceFeature",
+    "ResourceFeatureCatalog",
+    "ResourceSnapshot",
+    "RoleAssignment",
+    "RoleAuthorizationError",
+    "RoleChange",
+    "RoleState",
+    "ScanCancelled",
+    "SnapshotBatch",
+    "StandbyBuffer",
+    "StorageStatus",
+    "TemperatureEvent",
+    "TemperaturePolicy",
+    "TemperatureSample",
+    "TemperatureScan",
+    "TemperatureSeriesSnapshot",
+    "TemperatureState",
+    "TemperatureTelemetry",
+    "check_cancelled",
+    "gpu_unavailable_message",
+    "normalize_username",
+    "protected_process_pids",
+    "rejoin_as_worker",
+    "require_psutil",
+    "usernames_match",
+    "windows_windll",
+]

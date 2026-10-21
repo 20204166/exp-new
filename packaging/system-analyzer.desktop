@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=System Analyzer
+Comment=Local system dashboard and safe cleanup
+Exec=system-analyzer
+Terminal=false
+Categories=Utility;System;
+StartupNotify=true

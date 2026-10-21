@@ -1,0 +1,4 @@
+[System Analyzer]
+title=System Analyzer Peer Service
+description=Inbound TCP for System Analyzer LAN peer connections (port 27321)
+ports=27321/tcp

@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "system-analyzer"
+description = "Qt harness for evaluating the Expra Connect runtime and cluster pipeline."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "UNLICENSED" }
+dynamic = ["version"]
+dependencies = [
+    "psutil>=5.9",
+    "PySide6>=6.7",
+    "expra-connect>=2.2.1.1,<3",
+]
+
+[project.optional-dependencies]
+# Dev-only static-analysis gates, mirrored in requirements.txt. Pinned so the
+# `ruff check .`, `ruff format --check .`, `pyright`, and `mypy --ignore-missing-imports`
+# gates stay reproducible; install with `pip install -e '.[dev]'`.
+dev = [
+    "ruff==0.16.6",
+    "pyright==1.1.411",
+    "mypy==2.3.1",
+    "pyautogui==0.9.54",
+    "Pillow==12.3.0",
+]
+
+[project.scripts]
+expra-connect-harness = "main:main"
+system-analyzer = "main:main"
+
+[tool.setuptools.dynamic]
+# The version lives in one place (maintenance/_version.py, a leaf module so
+# setuptools can read it without importing Tkinter or optional runtime deps).
+# maintenance._release bumps it automatically when a wheel is built.
+version = { attr = "maintenance._version.__version__" }
+
+[tool.setuptools]
+# The Qt harness entrypoint and the scanner facade are the only top-level
+# application modules; Connect integration and shared contracts live in
+# `maintenance`.
+packages = [
+    "maintenance",
+    "maintenance.components",
+    "maintenance.scanner_support",
+    "maintenance.ui",
+    "maintenance.ui.window_supports",
+]
+py-modules = [
+    "main",
+    "algo",
+]
+
+[tool.setuptools.package-data]
+# Ship the per-package READMEs so the built wheel matches the source manifest
+# (maintenance._release diffs wheel members against source inputs), plus the
+# PEP 561 typed marker.
+"*" = ["*.md"]
+maintenance = ["py.typed"]
+
+[tool.ruff]
+# Wheels and audit/history directories are not production Python sources.
+exclude = ["build", "dist", "docs/bug_hunts", ".opencode", ".venv", "tools"]
+
+[tool.mypy]
+# In-tree `pip install .`/`pip install -e .` leaves build/ and *.egg-info/
+# beside the sources; keep the documented `mypy --ignore-missing-imports .`
+# gate clean by never type-checking those copies.
+files = ["maintenance", "main.py", "algo.py", "tests"]
+exclude = "(^|/)(build|dist|docs/bug_hunts|docs/security_reviews/poc)/|(^|/).*\\.egg-info/"

@@ -1,0 +1,15 @@
+{
+  "include": [
+    "maintenance",
+    "main.py",
+    "algo.py",
+    "tests"
+  ],
+  "exclude": [
+    "build",
+    "dist",
+    ".venv",
+    ".opencode",
+    "**/*.egg-info"
+  ]
+}

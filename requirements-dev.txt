@@ -1,0 +1,6 @@
+-r requirements.txt
+tomli>=2.0; python_version < "3.11"
+
+# Optional isolated GUI interaction runs (the Xvfb/xclip tools remain OS packages).
+pyautogui==0.9.54
+Pillow==12.3.0

@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.env/
+*.db
+
+.venv/
+.vscode/
+.pytest/
+.ui/
+.superpowers/
+/.claude/
+
+# local packaging artifacts
+*.egg-info/
+build/
+dist/*
+!dist/*.whl
+!dist/SHA256SUMS
+
+# local-only System Analyzer MCP copy and client config
+/tools/system_analyzer_mcp/
+/.mcp.json
