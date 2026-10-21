@@ -70,7 +70,12 @@ available from this project's own GitHub repository (separate from `exp`):
 curl -fsSL https://raw.githubusercontent.com/20204166/exp-new/main/install/install-online.sh | bash
 ```
 
-On Windows, run `install/install-online.ps1` from this repository's release.
+On Windows, open PowerShell and run:
+
+```powershell
+irm https://raw.githubusercontent.com/20204166/exp-new/main/install/install-online.ps1 | iex
+```
+
 The local and online install, verify, upgrade, rollback, and uninstall scripts
 remain available in `install/`; the per-user desktop launcher remains
 available in `install-desktop.sh`. Building never installs the generated wheels.
